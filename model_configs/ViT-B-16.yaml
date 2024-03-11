@@ -1,0 +1,19 @@
+DATALOADER:
+  TRAIN_X:
+    BATCH_SIZE: 128
+  TEST:
+    BATCH_SIZE: 100
+  NUM_WORKERS: 8
+
+embed_dim: 512
+vision_cfg:
+  image_size: 224
+  layers: 12
+  width: 768
+  patch_size: 16
+text_cfg:
+  context_length: 77
+  vocab_size: 49408
+  width: 768
+  heads: 8
+  layers: 12
