@@ -20,7 +20,7 @@ class ZeroShotDataset(Dataset):
     def __getitem__(self, idx):
         depth = np.load(self.depth[idx])
         if self.transform:
-            depth = torch.stack([self.transform(torch.from_numpy(d).permute(2, 0, 1)) for d in depth], dim = 0)
+            depth = torch.stack([self.transform(d) for d in depth], dim = 0)
 
         return depth, self.labels[idx]
 
@@ -39,8 +39,8 @@ class AlignDataset(Dataset):
     def __getitem__(self, idx):
         depth = np.load(self.depth[idx])
         if self.transform:
-            depth = torch.stack([self.transform(torch.from_numpy(d).permute(2, 0, 1)) for d in depth], dim = 0)
-            rgb = [np.array(Image.open(os.path.join(self.RGB[idx], img)).convert('RGB'), dtype=np.float32) for img in self.imgs_list]
-            rgb = torch.stack([self.transform(torch.from_numpy(r).permute(2, 0, 1)) for r in rgb], dim = 0)
+            depth = torch.stack([self.transform(d) for d in depth], dim = 0)
+            rgb = [Image.open(os.path.join(self.RGB[idx], img)).convert('RGB') for img in self.imgs_list]
+            rgb = torch.stack([self.transform(r) for r in rgb], dim = 0)
             
         return rgb, depth

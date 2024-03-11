@@ -112,6 +112,7 @@ def main(cfg):
     
     # =================== Depth map and depth-aligned Datalodaer Definition =================== #
     RGB_files, depth_files = generate_rgb_depth_files(cfg)
+    
     test_depth_files, test_labels = generate_eval_depth_files(cfg)
     
     random.seed(seed)
@@ -127,6 +128,7 @@ def main(cfg):
                                      std=[0.229, 0.224, 0.225])
     
     train_transform = test_transform = transforms.Compose([
+        transforms.ToTensor(),
         normalize
     ])
     
@@ -228,7 +230,7 @@ if __name__ == "__main__":
         "--log_dir", type=str, default="logging", help="path to print log"
     )
     parser.add_argument(
-        "--config-file", type=str, default="/mnt/new_drive/Documents/point_open/model_configs/ViT-H-14-quickgelu.yaml", help="path to config file"
+        "--config-file", type=str, default="model_configs/ViT-H-14-quickgelu.yaml", help="path to config file"
     )
     parser.add_argument('--wd', default=0.1, type=float)
     parser.add_argument('--betas', default=(0.9, 0.98), nargs=2, type=float)

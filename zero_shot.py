@@ -183,6 +183,7 @@ def main(cfg):
                                      std=[0.229, 0.224, 0.225])
     
     test_transform = transforms.Compose([
+            transforms.ToTensor(),
             normalize
         ])
     
