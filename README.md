@@ -6,7 +6,7 @@
 Official implementation of [OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images](https://arxiv.org/abs/12356)
 
 ![avatar](img/architecture.png)
-
+**Overview of OpenDlign.** In (**a**), OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. For zero-shot classification (**b**)}, OpenDlign aggregates multi-view logits from both pre-trained and fine-tuned encoders for label prediction and for few-shot classification (**c**), it employs a logistic regressor trained on multi-view features from the encoders.
 # Project Summary
 OpenDlign is a multimodal framework for learning open-world 3D representations. It leverages depth-aligned images generated from point cloud-projected depth maps. Unlike CAD-rendered images, our generated images provide rich, realistic color and texture diversity while preserving geometric and semantic consistency with the depth maps. Our experiments demonstrate OpenDlign's superior performance in zero-shot and few-shot classification, 3D object detection, and cross-modal retrieval, especially with real-scanned 3D objects.
 
