@@ -7,7 +7,7 @@ Official implementation of [OpenDlign: Enhancing Open-World 3D Learning with Dep
 
 ![avatar](img/architecture.png)
 
-# Instructions
+# Project Summary
 OpenDlign is a multimodal framework for learning open-world 3D representations. It leverages depth-aligned images generated from point cloud-projected depth maps. Unlike CAD-rendered images, our generated images provide rich, realistic color and texture diversity while preserving geometric and semantic consistency with the depth maps. Our experiments demonstrate OpenDlign's superior performance in zero-shot and few-shot classification, 3D object detection, and cross-modal retrieval, especially with real-scanned 3D objects.
 
 ## Install environments
