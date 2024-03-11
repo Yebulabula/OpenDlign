@@ -19,7 +19,7 @@ We pre-train OpenDlign on 1 Nvidia A100 GPU, the code is tested with CUDA==11.3 
 ```conda create -n OpenDlign python=3.8``` \
 ```conda activate OpenDlign``` \
 ```conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch``` \
-```pip install -r requirements.txt```\
+```pip install -r requirements.txt```
 
 ## Datasets
 The processed evaluation data (i.e., ModelNet40, ScanObjectNN, OmniObject3D) can be found [here](https://huggingface.co/datasets/OpenDlign/OpenDlign-Datasets)
