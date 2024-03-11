@@ -30,6 +30,7 @@ Update the root path of your downloaded evaluation dataset before running the fo
 
 ## Training
 You are free
+
 Update the root path of your downloaded training dataset before running the following command:
 
 ```bash scripts/model_training.sh```
