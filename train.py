@@ -79,8 +79,6 @@ def train(model, contrastive_criterion, optimizer_d_visual, scheduler_d_visual, 
         zero_shot_eval(model, test_loader, label_dict, cfg)
         torch.save(checkpoint, os.path.join(cfg.output_checkpoint_dir, f"checkpoint_{epoch}.pth"))
 
-    logging.close()
-
 def generate_rgb_depth_files(cfg):
     root = cfg.root
     dataset_list = cfg.train_dataset
@@ -105,11 +103,6 @@ def main(cfg):
     torch.manual_seed(seed)
     np.random.seed(seed)
     
-    logging.info("loading pretrained model")
-    clip_model, _, _ = open_clip.create_model_and_transforms(cfg.clip_model, pretrained='dfn5b')
-    logging.info("loading tokenizer")
-    tokenizer = open_clip.get_tokenizer(cfg.clip_model)
-    
     # =================== Depth map and depth-aligned Datalodaer Definition =================== #
     RGB_files, depth_files = generate_rgb_depth_files(cfg)
     
@@ -120,10 +113,7 @@ def main(cfg):
 
     random.seed(seed)
     random.shuffle(depth_files)
-
-    RGB_files = RGB_files
-    depth_files = depth_files
-
+    
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
     
@@ -131,6 +121,11 @@ def main(cfg):
         transforms.ToTensor(),
         normalize
     ])
+    
+    logging.info("loading pretrained model")
+    clip_model, _, _ = open_clip.create_model_and_transforms(cfg.clip_model, pretrained='dfn5b')
+    logging.info("loading tokenizer")
+    tokenizer = open_clip.get_tokenizer(cfg.clip_model)
     
     with open('labels.json') as f:
         classnames = json.load(f)[cfg.eval_dataset]
@@ -151,16 +146,19 @@ def main(cfg):
         state_dict_visual = model.clip_model.visual.state_dict()
     
     optimizer_d_visual = torch.optim.AdamW(model.clip_model.visual.parameters(), lr=3e-5, betas = cfg.betas, eps = cfg.eps, weight_decay=cfg.wd)
-    scheduler_d_visual = torch.optim.lr_scheduler.OneCycleLR(optimizer_d_visual, max_lr=3e-4, steps_per_epoch = len(train_dataset), epochs=10)
+    scheduler_d_visual = torch.optim.lr_scheduler.OneCycleLR(optimizer_d_visual, max_lr=3e-4, steps_per_epoch = len(train_loader), epochs=10)
     
     if cfg.resume:
         model, optimizer_d_visual, scheduler_d_visual = resume_checkpoint(model, optimizer_d_visual, scheduler_d_visual, cfg.resume_path)
     else:
-        last_layer_num = cfg.vision_cfg.layers
-        for key in list(state_dict_visual.keys()):  
+        last_layer_num = cfg.vision_cfg.layers - 1
+        state_dict_visual = model.clip_model.visual.state_dict()
+
+        for key in state_dict_visual.keys():
             if f'resblocks.{last_layer_num}' in key:
                 new_key = key.replace(f'resblocks.{last_layer_num}', 'depth_control_visual.resblocks.0')
                 state_dict_visual[new_key] = state_dict_visual[key].clone()
+            
         model.clip_model.visual.load_state_dict(state_dict_visual)
     
     num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
