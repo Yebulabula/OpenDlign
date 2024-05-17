@@ -199,7 +199,7 @@ def reset_config(cfg, args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--root", type=str, default="/mnt/new_drive/YeMao_Dataset/point_cloud_dataset/", help="path to dataset")
+    parser.add_argument("--root", type=str, default="point_cloud_dataset/", help="path to dataset")
     parser.add_argument(
         "--train_dataset", type=list, default=['shapenet'], help="shapenet-55"
     )

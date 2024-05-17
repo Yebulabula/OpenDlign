@@ -480,7 +480,7 @@ def reset_config(cfg, args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--root", type=str, default="/mnt/new_drive/YeMao_Dataset/point_cloud_dataset/", help="path to dataset")
+    parser.add_argument("--root", type=str, default="/mnt/new_drive/the_Dataset/point_cloud_dataset/", help="path to dataset")
     parser.add_argument("--output-dir", type=str, default="", help="output directory")
     parser.add_argument(
         "--checkpoint_dir",
