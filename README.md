@@ -2,6 +2,7 @@
 [Project Website](https://Yebulabula.github.io/OpenDlign/)
 
 [***News***] [23/06/2024] OpenDlign pre-trained models and datasets have been released. 🔥🔥🔥
+
 [23/06/2024] The OpenDlign paper is released on Arxiv. 🔥🔥🔥
 
 Official implementation of [OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images](https://arxiv.org/abs/2404.16538)
