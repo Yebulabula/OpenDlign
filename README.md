@@ -1,9 +1,10 @@
 # OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images
 [Project Website](https://Yebulabula.github.io/OpenDlign/)
 
-[***News***] [11/03/2024] OpenDlign pre-trained models and datasets have been released. 🔥🔥🔥
+[***News***] [23/06/2024] OpenDlign pre-trained models and datasets have been released. 🔥🔥🔥
+[23/06/2024] The OpenDlign paper is released on Arxiv. 🔥🔥🔥
 
-Official implementation of [OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images](https://arxiv.org/abs/12356)
+Official implementation of [OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images](https://arxiv.org/abs/2404.16538)
 
 ![avatar](img/architecture.png)
 **Overview of OpenDlign.** In (**a**), OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. For zero-shot classification (**b**), OpenDlign aggregates multi-view logits from both pre-trained and fine-tuned encoders for label prediction and for few-shot classification (**c**), it employs a logistic regressor trained on multi-view features from the encoders.
