@@ -7,8 +7,13 @@
 
 Official implementation of [OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images](https://arxiv.org/abs/2404.16538)
 
+
+![avatar](img/concept.png)
+**Top.**: Comparison of OpenDlign with traditional open-world 3D learning models. Depth-based (a) and point-based (b) methods employ additional depth or point encoders for pre-training to align with CAD-rendered images. Conversely, OpenDlign (c) fine-tunes only the image encoder, aligning with vividly colored and textured depth-aligned images for enhanced 3D representation.  **Bottom.**: Visual comparison between multi-view CAD-rendered and corresponding depth-aligned images in OpenDlign.
+
 ![avatar](img/architecture.png)
-**Overview of OpenDlign.** In (**a**), OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. For zero-shot classification (**b**), OpenDlign aggregates multi-view logits from both pre-trained and fine-tuned encoders for label prediction and for few-shot classification (**c**), it employs a logistic regressor trained on multi-view features from the encoders.
+**Overview of OpenDlign.** OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. 
+
 ## Project Summary
 OpenDlign is a multimodal framework for learning open-world 3D representations. It leverages depth-aligned images generated from point cloud-projected depth maps. Unlike CAD-rendered images, our generated images provide rich, realistic color and texture diversity while preserving geometric and semantic consistency with the depth maps. Our experiments demonstrate OpenDlign's superior performance in zero-shot and few-shot classification, 3D object detection, and cross-modal retrieval, especially with real-scanned 3D objects.
 
