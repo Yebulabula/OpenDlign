@@ -3,7 +3,7 @@
 
 [***News***] [23/06/2024] OpenDlign pre-trained models and datasets have been released. 🔥🔥🔥
 
-[***News***] [23/06/2024] The OpenDlign paper is released on Arxiv. 🔥🔥🔥
+[***News***] [25/04/2024] The OpenDlign paper is released on Arxiv. 🔥🔥🔥
 
 Official implementation of [OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images](https://arxiv.org/abs/2404.16538)
 
@@ -42,8 +42,9 @@ Update the root path of your downloaded training dataset before running the foll
 If you find our code is helpful, please cite our paper:
 
 ```
-@article{ye2023opendlign,
+@article{mao2024opendlign,
   title={OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images},
-  author={Ye Mao and Junpeng Jing and Krystian Mikolajczyk},
+  author={Mao, Ye and Jing, Junpeng and Mikolajczyk, Krystian},
+  journal={arXiv preprint arXiv:2404.16538},
   year={2024}
 }
