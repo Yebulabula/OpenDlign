@@ -9,7 +9,7 @@ Official implementation of [OpenDlign: Enhancing Open-World 3D Learning with Dep
 
 
 ![avatar](img/concept.png)
-**Top.**: Comparison of OpenDlign with traditional open-world 3D learning models. Depth-based (a) and point-based (b) methods employ additional depth or point encoders for pre-training to align with CAD-rendered images. Conversely, OpenDlign (c) fine-tunes only the image encoder, aligning with vividly colored and textured depth-aligned images for enhanced 3D representation.  **Bottom.**: Visual comparison between multi-view CAD-rendered and corresponding depth-aligned images in OpenDlign.
+**Top:** Comparison of OpenDlign with traditional open-world 3D learning models. Depth-based (a) and point-based (b) methods employ additional depth or point encoders for pre-training to align with CAD-rendered images. Conversely, OpenDlign (c) fine-tunes only the image encoder, aligning with vividly colored and textured depth-aligned images for enhanced 3D representation.  **Bottom:** Visual comparison between multi-view CAD-rendered and corresponding depth-aligned images in OpenDlign.
 
 ![avatar](img/architecture.png)
 **Overview of OpenDlign.** OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. 
