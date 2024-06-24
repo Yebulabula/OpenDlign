@@ -106,7 +106,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
+                <a href="https://arxiv.org/abs/2404.16538"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -159,7 +159,7 @@
       <img id="teaser" src="./static/merge.png" alt="Teaser" style="width:100%; height:auto;">
       <!-- Remove the centered text class from the subtitle for left-right text alignment -->
       <h2 class="content has-text-justified">
-        <strong>Comparing conventional 3D open-world learning frameworks with OpenDlign:</strong>  It achieves multimodal alignment via depth-aligned images, offering consistent geometric and semantic details as well as richer color and textural variations than rendered images used in prior frameworks. OpenDlign streamlines 3D representation by directly fine-tuning the CLIP image encoder, avoiding the additional encoder pre-training needed by previous open-world methods. Notably, both rendered and depth-aligned images are only available in learning alignment.
+        <strong>Top:</strong> Comparison of OpenDlign with traditional open-world 3D learning models. Depth-based (a) and point-based (b) methods employ additional depth or point encoders for pre-training to align with CAD-rendered images. Conversely, OpenDlign (c) fine-tunes only the image encoder, aligning with vividly colored and textured depth-aligned images for enhanced 3D representation. Both rendered and depth-aligned images are utilized solely during training. <strong>Bottom:</strong> Visual comparison between multi-view CAD-rendered and corresponding depth-aligned images in OpenDlign.
       </h2>
     </div>
   </div>
@@ -175,13 +175,13 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Recent advancements in Vision and Language Models (VLMs) have benefited open-world 3D representation, facilitating 3D zero-shot capability in unseen categories. Existing open-world methods pre-train an extra 3D encoder to align features from 3D data (e.g., depth maps or point clouds) with CAD-rendered images and corresponding texts.
+              Recent open-world 3D representation learning methods using Vision-Language Models (VLMs) to align 3D data with image-text information have shown superior 3D zero-shot performance.
             </p>
             <p>
-              However, these CAD-rendered images have limited color and texture variations, leading to overfitting in alignment. Furthermore, the volume discrepancy between pre-training datasets of the 3D encoder and VLM leads to sub-optimal 2D knowledge transfer for 3D learning. To address these two challenges, we propose OpenDlign, a novel framework for learning open-world 3D representations, that leverages depth-aligned images generated from point cloud-projected depth maps. Unlike CAD-rendered images, our generated images provide rich, realistic color and texture diversity while preserving geometric and semantic consistency with the depth maps. Additionally, OpenDlign optimizes depth map projection and integrates depth-specific text prompts, improving 2D VLM knowledge adaptation for 3D learning via data-efficient fine-tuning. 
+              However, CAD-rendered images for this alignment often lack realism and texture variation, compromising alignment robustness. Moreover, the volume discrepancy between 3D and 2D pretraining datasets highlights the need for effective strategies to transfer the representational abilities of VLMs to 3D learning. In this paper, we present OpenDlign, a novel open-world 3D model using depth-aligned images generated from a diffusion model for robust multimodal alignment. These images exhibit greater texture diversity than CAD renderings due to the stochastic nature of the diffusion model. By refining the depth map projection pipeline and designing depth-specific prompts, OpenDlign leverages rich knowledge in pre-trained VLM for 3D representation learning.
             </p>
             <p>
-              Experimental results show OpenDlign's superiority in 3D zero-shot and few-shot tasks, exceeding benchmarks by 9.7% on ModelNet40 and 17.6% on OmniObject3D for zero-shot classification. Notably, aligning with generated depth-aligned images boosts the performance of other existing methods, highlighting its potential to advance 3D open-world learning. Our code can be found in the supplemental material.
+              Our experiments show that OpenDlign achieves high zero-shot and few-shot performance on diverse 3D tasks, despite only fine-tuning 6 million parameters on a limited ShapeNet dataset. In zero-shot classification, OpenDlign surpasses previous models by 8.0\% on ModelNet40 and 16.4\% on OmniObject3D. Additionally, using depth-aligned images for multimodal alignment consistently enhances the performance of other state-of-the-art models.
             </p>
           </div>
         </div>
@@ -195,7 +195,7 @@
       <img id="teaser" src="./static/Figure2.gif" alt="Chair Animation" style="width:100%; height:auto;">
       <!-- Remove the centered text class from the subtitle for left-right text alignment -->
       <h2 class="content has-text-justified">
-        <strong>Overview of OpenDlign.</strong> In <strong>(a)</strong>, OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. For zero-shot classification <strong>(b)</strong>, OpenDlign aggregates multi-view logits from both pre-trained and fine-tuned encoders for label prediction and for few-shot classification <strong>(c)</strong>, it employs a logistic regressor trained on multi-view features from the encoders.
+        <strong>Overview of OpenDlign.</strong> In <strong>(a)</strong>, OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. For zero-shot classification <strong>(b)</strong>,  OpenDlign aggregates multi-view logits from both pre-trained and fine-tuned encoders for label prediction. For few-shot classification <strong>(c)</strong>, it employs a logistic regressor trained on multi-view features from the encoders.
       </h2>
     </div>
   </div>
@@ -209,7 +209,7 @@
     <!-- Center the title by adding a centered text class -->
     <h2 class="title is-3 has-text-centered">Zero-Shot 3D Classifictaion</h2>
     <div class="hero-body">
-      <img id="teaser" src="./static/1.png" alt="Teaser" style="width:100%; height:auto;">
+      <img id="teaser" src="./static/1.1.png" alt="Teaser" style="width:100%; height:auto;">
       <!-- Remove the centered text class from the subtitle for left-right text alignment -->
       <!-- <h2 class="content has-text-justified">
         <strong>Overview of OpenDlign.</strong> In <strong>(a)</strong>, OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. For zero-shot classification <strong>(b)</strong>, OpenDlign aggregates multi-view logits from both pre-trained and fine-tuned encoders for label prediction and for few-shot classification <strong>(c)</strong>, it employs a logistic regressor trained on multi-view features from the encoders.
@@ -223,7 +223,7 @@
     <!-- Center the title by adding a centered text class -->
     <h2 class="title is-3 has-text-centered">Few-Shot 3D Classifictaion</h2>
     <div class="hero-body">
-      <img id="teaser" src="./static/2.png" alt="Teaser" style="width:100%; height:auto;">
+      <img id="teaser" src="./static/1.2.png" alt="Teaser" style="width:100%; height:auto;">
       <!-- Remove the centered text class from the subtitle for left-right text alignment -->
       <!-- <h2 class="content has-text-justified">
         <strong>Overview of OpenDlign.</strong> In <strong>(a)</strong>, OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. For zero-shot classification <strong>(b)</strong>, OpenDlign aggregates multi-view logits from both pre-trained and fine-tuned encoders for label prediction and for few-shot classification <strong>(c)</strong>, it employs a logistic regressor trained on multi-view features from the encoders.
@@ -237,7 +237,7 @@
     <!-- Center the title by adding a centered text class -->
     <h2 class="title is-3 has-text-centered">Zero-Shot 3D Object Detection</h2>
     <div class="hero-body">
-      <img id="teaser" src="./static/3.png" alt="Teaser" style="width:100%; height:auto;">
+      <img id="teaser" src="./static/1.3.png" alt="Teaser" style="width:100%; height:auto;">
       <!-- Remove the centered text class from the subtitle for left-right text alignment -->
       <!-- <h2 class="content has-text-justified">
         <strong>Overview of OpenDlign.</strong> In <strong>(a)</strong>, OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. For zero-shot classification <strong>(b)</strong>, OpenDlign aggregates multi-view logits from both pre-trained and fine-tuned encoders for label prediction and for few-shot classification <strong>(c)</strong>, it employs a logistic regressor trained on multi-view features from the encoders.
@@ -333,12 +333,12 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{ye2024opendlign,
-  author    = {Ye Mao, Junpeng Jing, Krystian Mikolajczyk},
-  title     = {OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images},
-  journal   = {Arxiv},
-  year      = {2024},
-}</code></pre>
+    <pre><code>@article{mao2024opendlign,
+      title={OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images},
+      author={Mao, Ye and Jing, Junpeng and Mikolajczyk, Krystian},
+      journal={arXiv preprint arXiv:2404.16538},
+      year={2024}
+    }</code></pre>
   </div>
 </section>
 
