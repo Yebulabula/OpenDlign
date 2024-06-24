@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://yebulabula.github.io/">Ye Mao</a>,</span>
+            <span class="author-block">
+              <a href="https://tomtomtommi.github.io/">Junpeng Jing</a>,</span>
+            <span class="author-block">
+              <a href="https://www.imperial.ac.uk/people/k.mikolajczyk">Krystian Mikolajczyk</a>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Imperial College London</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Yebulabula/OpenDlign"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/OpenDlign/OpenDlign-Datasets"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                </a>
+              <!-- Model Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/OpenDlign/OpenDlign-Models/tree/main"
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-file-archive"></i>
+                  </span>
+                  <span>Models</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <!-- Center the title by adding a centered text class -->
+    <div class="hero-body">
+      <img id="teaser" src="./static/merge.png" alt="Teaser" style="width:100%; height:auto;">
+      <!-- Remove the centered text class from the subtitle for left-right text alignment -->
+      <h2 class="content has-text-justified">
+        <strong>Comparing conventional 3D open-world learning frameworks with OpenDlign:</strong>  It achieves multimodal alignment via depth-aligned images, offering consistent geometric and semantic details as well as richer color and textural variations than rendered images used in prior frameworks. OpenDlign streamlines 3D representation by directly fine-tuning the CLIP image encoder, avoiding the additional encoder pre-training needed by previous open-world methods. Notably, both rendered and depth-aligned images are only available in learning alignment.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+  <!--/ Abstract. -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Recent advancements in Vision and Language Models (VLMs) have benefited open-world 3D representation, facilitating 3D zero-shot capability in unseen categories. Existing open-world methods pre-train an extra 3D encoder to align features from 3D data (e.g., depth maps or point clouds) with CAD-rendered images and corresponding texts.
+            </p>
+            <p>
+              However, these CAD-rendered images have limited color and texture variations, leading to overfitting in alignment. Furthermore, the volume discrepancy between pre-training datasets of the 3D encoder and VLM leads to sub-optimal 2D knowledge transfer for 3D learning. To address these two challenges, we propose OpenDlign, a novel framework for learning open-world 3D representations, that leverages depth-aligned images generated from point cloud-projected depth maps. Unlike CAD-rendered images, our generated images provide rich, realistic color and texture diversity while preserving geometric and semantic consistency with the depth maps. Additionally, OpenDlign optimizes depth map projection and integrates depth-specific text prompts, improving 2D VLM knowledge adaptation for 3D learning via data-efficient fine-tuning. 
+            </p>
+            <p>
+              Experimental results show OpenDlign's superiority in 3D zero-shot and few-shot tasks, exceeding benchmarks by 9.7% on ModelNet40 and 17.6% on OmniObject3D for zero-shot classification. Notably, aligning with generated depth-aligned images boosts the performance of other existing methods, highlighting its potential to advance 3D open-world learning. Our code can be found in the supplemental material.
+            </p>
+          </div>
+        </div>
+      </div>
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <!-- Center the title by adding a centered text class -->
+    <h2 class="title is-3 has-text-centered">Overall Framework</h2>
+    <div class="hero-body">
+
+      <img id="teaser" src="./static/Figure2.gif" alt="Chair Animation" style="width:100%; height:auto;">
+      <!-- Remove the centered text class from the subtitle for left-right text alignment -->
+      <h2 class="content has-text-justified">
+        <strong>Overview of OpenDlign.</strong> In <strong>(a)</strong>, OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. For zero-shot classification <strong>(b)</strong>, OpenDlign aggregates multi-view logits from both pre-trained and fine-tuned encoders for label prediction and for few-shot classification <strong>(c)</strong>, it employs a logistic regressor trained on multi-view features from the encoders.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <!-- Center the title by adding a centered text class -->
+    <h2 class="title is-3 has-text-centered">Zero-Shot 3D Classifictaion</h2>
+    <div class="hero-body">
+      <img id="teaser" src="./static/1.png" alt="Teaser" style="width:100%; height:auto;">
+      <!-- Remove the centered text class from the subtitle for left-right text alignment -->
+      <!-- <h2 class="content has-text-justified">
+        <strong>Overview of OpenDlign.</strong> In <strong>(a)</strong>, OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. For zero-shot classification <strong>(b)</strong>, OpenDlign aggregates multi-view logits from both pre-trained and fine-tuned encoders for label prediction and for few-shot classification <strong>(c)</strong>, it employs a logistic regressor trained on multi-view features from the encoders.
+      </h2> -->
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <!-- Center the title by adding a centered text class -->
+    <h2 class="title is-3 has-text-centered">Few-Shot 3D Classifictaion</h2>
+    <div class="hero-body">
+      <img id="teaser" src="./static/2.png" alt="Teaser" style="width:100%; height:auto;">
+      <!-- Remove the centered text class from the subtitle for left-right text alignment -->
+      <!-- <h2 class="content has-text-justified">
+        <strong>Overview of OpenDlign.</strong> In <strong>(a)</strong>, OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. For zero-shot classification <strong>(b)</strong>, OpenDlign aggregates multi-view logits from both pre-trained and fine-tuned encoders for label prediction and for few-shot classification <strong>(c)</strong>, it employs a logistic regressor trained on multi-view features from the encoders.
+      </h2> -->
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <!-- Center the title by adding a centered text class -->
+    <h2 class="title is-3 has-text-centered">Zero-Shot 3D Object Detection</h2>
+    <div class="hero-body">
+      <img id="teaser" src="./static/3.png" alt="Teaser" style="width:100%; height:auto;">
+      <!-- Remove the centered text class from the subtitle for left-right text alignment -->
+      <!-- <h2 class="content has-text-justified">
+        <strong>Overview of OpenDlign.</strong> In <strong>(a)</strong>, OpenDlign converts point clouds into multi-view depth maps using a contour-aware projection, which then helps generate depth-aligned RGB images with diverse textures, geometrically and semantically aligned with the maps. A transformer block, residually connected to the CLIP image encoder, is fine-tuned to align depth maps with depth-aligned images for robust 3D representation. For zero-shot classification <strong>(b)</strong>, OpenDlign aggregates multi-view logits from both pre-trained and fine-tuned encoders for label prediction and for few-shot classification <strong>(c)</strong>, it employs a logistic regressor trained on multi-view features from the encoders.
+      </h2> -->
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <!-- Center the title by adding a centered text class -->
+    <h2 class="title is-3 has-text-centered">Cross-Modal Retrieval</h2>
+    <div class="hero-body">
+      <img id="teaser" src="./static/4.png" alt="Teaser" style="width:100%; height:auto;">
+      <!-- Remove the centered text class from the subtitle for left-right text alignment -->
+      <h2 class="content has-text-justified">
+        <strong>3D shape retrieval results. </strong><strong>(a)</strong> Two most similar 3D shapes for each query image. <strong>(b)</strong> Most similar 3D shapes for each query text. <strong>(c)</strong> Two most similar 3D shapes for combined image and text queries.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <img poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/Figure2.png"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+       <-- -->
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{ye2024opendlign,
+  author    = {Ye Mao, Junpeng Jing, Krystian Mikolajczyk},
+  title     = {OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images},
+  journal   = {Arxiv},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/Yebulabula" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, licensed under a <a rel="license"
+              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
