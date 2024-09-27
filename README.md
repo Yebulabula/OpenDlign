@@ -12,7 +12,7 @@
 
 [Ye Mao](https://yebulabula.github.io/), [Junpeng Jing](https://tomtomtommi.github.io/), [Krystian Mikolajczyk](https://www.imperial.ac.uk/people/k.mikolajczyk)
 
-[[`Paper`](https://arxiv.org/abs/2404.16538)] [[Project Website](https://Yebulabula.github.io/OpenDlign/)]
+[[`Paper`](https://arxiv.org/abs/2404.16538)] [[`Project Website`](https://Yebulabula.github.io/OpenDlign/)]
 
 
 [***News***] [23/06/2024] OpenDlign pre-trained models and datasets have been released. 🔥🔥🔥
