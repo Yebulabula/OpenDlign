@@ -6,8 +6,14 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/opendlign-enhancing-open-world-3d-learning/zero-shot-transfer-3d-point-cloud)](https://paperswithcode.com/sota/zero-shot-transfer-3d-point-cloud?p=opendlign-enhancing-open-world-3d-learning)
 
 
-# OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images
-[Project Website](https://Yebulabula.github.io/OpenDlign/)
+# [NeurIPS 2024] OpenDlign: Enhancing Open-World 3D Learning with Depth-Aligned Images.
+
+**[Imperial College London](https://www.imperial.ac.uk/)**
+
+[Ye Mao](https://yebulabula.github.io/), [Junpeng Jing](https://tomtomtommi.github.io/), [Krystian Mikolajczyk](https://www.imperial.ac.uk/people/k.mikolajczyk)
+
+[[`Paper`](https://arxiv.org/abs/2404.16538)] [[Project Website](https://Yebulabula.github.io/OpenDlign/)]
+
 
 [***News***] [23/06/2024] OpenDlign pre-trained models and datasets have been released. 🔥🔥🔥
 
